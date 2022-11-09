@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Box, List, ListItem, Avatar, Tag, TagLabel, Skeleton, Spinner } from "@chakra-ui/core"
+import { Loading, Text } from '@nextui-org/react';
+import "../../style/style.css";
 
 class UsersList extends Component {
     constructor(props) {
@@ -25,87 +26,48 @@ class UsersList extends Component {
     render() {
         return (
             <React.Fragment>
-                <Box
-                    w="30%"
-                    h="80vh"
-                    p={1}
-                    shadow="lg"
-                    overflowY="auto"
-                    roundedBottomLeft="md"
-                    bg="white"
-                >
-                    <List spacing={0}>
+                <div className="userlistouter">
+                    <div className="userlistinner">
                         {!this.props.usersList.length > 0
                             ?
                             <div>
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
-                                <Skeleton height="50px" my="10px" />
+                                <Loading color="primary"></Loading>
                             </div>
                             :
                             <React.Fragment>
-                                <ListItem p={1} onClick={() => this.selectUser("chatRoom")}>
-                                    <Tag
-                                        w="100%"
-                                        shadow="md"
-                                        variantColor={this.state.activeItem === "chatRoom" ? "red" : "orange"}
-                                        roundedRight="md"
-                                        roundedLeft="full"
-                                        cursor="pointer"
-                                        position="relative"
+                                <div className='eachuserlist' onClick={() => this.selectUser("chatRoom")}>
+                                    <div
+                                        className='userlist'
+                                        //variantColor={this.state.activeItem === "chatRoom" ? "red" : "orange"}
+                                        style={this.state.activeItem === "chatRoom" ? {backgroundColor: 'rgb(249, 255, 196)'} : {backgroundColor: 'rgb(255, 229, 196)'}}
                                     >
-                                        <Avatar
-                                            size="md"
-                                            ml={-2}
-                                            mr={2}
-                                        />
-                                        <TagLabel>Common Group</TagLabel>
-                                        <Spinner
-                                            position="absolute"
-                                            right="0"
-                                            style={{ display: this.props.loadingData && this.state.activeItem === "chatRoom" ? "block" : "none" }}
-                                        />
-                                    </Tag>
-                                </ListItem>
+                                        <Text>Common Group</Text>
+                                        <Loading style={{ display: this.props.loadingData && this.state.activeItem === "chatRoom" ? "block" : "none" }} />
+                                    </div>
+                                </div>
                                 {this.props.usersList.map(user => {
                                     return (user.uid !== this.props.userId)
                                         ?
-                                        <ListItem p={1} key={user.uid} onClick={() => this.selectUser(user)}>
-                                            <Tag
-                                                w="100%"
-                                                shadow="md"
-                                                variantColor={this.state.activeItem === user.uid ? "red" : "orange"}
-                                                roundedRight="md"
-                                                roundedLeft="full"
-                                                cursor="pointer"
-                                                position="relative"
+                                        <div className='eachuserlist' key={user.uid} onClick={() => this.selectUser(user)}>
+                                            <div
+                                                className='userlist'
+                                                //variantColor={this.state.activeItem === user.uid ? "red" : "orange"}
+                                                style={this.state.activeItem === user.uid ? {backgroundColor: 'rgb(249, 255, 196)'} : {backgroundColor: 'rgb(255, 229, 196)'}}
                                             >
-                                                <Avatar
+                                                <img
+                                                    className='userlistprofilepic'
                                                     src={user.img}
-                                                    size="md"
-                                                    name={user.name}
-                                                    ml={-2}
-                                                    mr={2}
                                                 />
-                                                <TagLabel>{user.name}</TagLabel>
-                                                <Spinner
-                                                    position="absolute"
-                                                    right="0"
-                                                    style={{ display: this.props.loadingData && this.state.activeItem === user.uid ? "block" : "none" }}
-                                                />
-                                            </Tag>
-                                        </ListItem>
+                                                <Text>{user.name}</Text>
+                                                <Loading style={{ display: this.props.loadingData && this.state.activeItem === user.uid ? "block" : "none" }} />
+                                            </div>
+                                        </div>
                                         : ""
                                 })}
                             </React.Fragment>
                         }
-                    </List>
-                </Box>
+                    </div>
+                </div>
             </React.Fragment>
         )
     }

@@ -99,26 +99,29 @@ class InputBox extends Component {
         return (
             <React.Fragment>
                 <div className="messageinputbox">
-                    <form onSubmit={this.sendMessage} style={{ height: "100%" }}>
+                    <form onSubmit={this.sendMessage} style={{ height: "100%", width: "100%" }}>
                         <Input
+                            aria-label="inputmsgbox"
                             width="100%"
                             size="lg"
                             bordered
                             clearable
                             contentRightStyling={false}
+                            value={this.state.text}
                             placeholder="Type your message..."
-                            contentRight={
-                                <div className="sendingbtngroup" aria-label="sendopt">
-                                    <SendButton aria-label="emojibtn" onClick={this.emojiToggle}>
-                                        <ChevronUpCircle primaryColor="white" set="bold" />
-                                    </SendButton>
-                                    <SendButton aria-label="sendmsg" onClick={this.emojiToggle}>
-                                        <SendIcon />
-                                    </SendButton>
-                                </div>
-                            }
+                            onChange={(text) => { this.setState({ text: text.target.value }) }}
                         />
                     </form>
+                    <div>
+                        <div className="sendingbtngroup" aria-label="sendopt">
+                            <SendButton aria-label="emojibtn" onClick={this.emojiToggle}>
+                                <ChevronUpCircle primaryColor="white" set="bold" />
+                            </SendButton>
+                            <SendButton aria-label="sendmsg" onClick={this.sendMessage}>
+                                <SendIcon />
+                            </SendButton>
+                        </div>
+                    </div>
                 </div>
                 <div
                     className="emojicontainer"

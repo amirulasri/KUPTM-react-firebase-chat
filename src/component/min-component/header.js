@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Box, Flex, Avatar, Button, Text, Stack, Menu, MenuButton, MenuList, MenuItem, Image } from "@chakra-ui/core"
-
-
+import { logokuptm } from "../../assets/logokuptm.png";
+import { Box, Flex, Avatar, Button, Text, Stack, Menu, MenuButton, MenuList, MenuItem, Image } from "@chakra-ui/core";
 
 class Header extends Component {
     constructor(props) {
@@ -12,18 +11,17 @@ class Header extends Component {
     render() {
         return (
             <React.Fragment>
-                <Flex borderBottom="1px solid gray" bg="white" roundedTop="md">
+                <div className="headerchat">
                     <Box w="100%" p={4}>
-                        <Stack isInline>
-                            <Image
-                                size="35px"
-                                src="/cat.png"
-                                alt="logo"
+                        <div>
+                            <img
+                                className="logomain"
+                                src={logokuptm}
                             />
                             <Text fontWeight={600} color="orange.300">
-                                Cat Chat
+                                KUPTM Chat
                             </Text>
-                        </Stack>
+                        </div>
                     </Box>
                     <Box w="100%" p={4} display="flex" flexDirection="row-reverse">
                         <Menu>
@@ -40,7 +38,7 @@ class Header extends Component {
                             </MenuList>
                         </Menu>
                     </Box>
-                </Flex>
+                </div>
             </React.Fragment>
         )
     }

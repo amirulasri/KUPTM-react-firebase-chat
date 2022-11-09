@@ -36,8 +36,8 @@ class App extends Component {
 
   render() {
     return (
-      <NextUIProvider>
-        <ThemeProvider theme={CustomTheme}>
+      <ThemeProvider theme={CustomTheme}>
+        <NextUIProvider>
           <CSSReset />
           <Router>
             <Switch>
@@ -54,8 +54,8 @@ class App extends Component {
               />
             </Switch>
           </Router>
-        </ThemeProvider>
-      </NextUIProvider>
+        </NextUIProvider>
+      </ThemeProvider>
     );
   }
 }

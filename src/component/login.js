@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { auth, database } from "firebase";
-import { Button, Spacer, Text, Modal, Container } from "@nextui-org/react";
+import { Button, Spacer, Text, Modal, Container, Progress } from "@nextui-org/react";
 import { User } from "react-iconly";
 import "../style/style.css";
 import logo from "../assets/logokuptm.png";
@@ -11,15 +11,18 @@ class Login extends Component {
     this.state = {
       error: false,
       errorMessage: "",
-      modalLoginFailed: false
+      modalLoginFailed: false,
+      loginloader: false
     }
   }
   loginWithGmail = () => {
+    this.setState({loginloader: true});
     //e.preventDefault();
     let provider = new auth.GoogleAuthProvider();
     auth()
       .signInWithPopup(provider)
       .then(result => {
+        this.setState({loginloader: false});
         let additionalUserInfo = result.additionalUserInfo;
         let user = {
           userName: result.additionalUserInfo.profile.given_name,
@@ -46,7 +49,7 @@ class Login extends Component {
       })
       .catch(error => {
         var errorMessage = error.message;
-        this.setState({ error: true, errorMessage, modalLoginFailed: true });
+        this.setState({ error: true, errorMessage, modalLoginFailed: true, loginloader: false });
       });
   };
 
@@ -63,19 +66,23 @@ class Login extends Component {
         uid: result.user.uid
       });
   };
-  
+
   render() {
     return (
-      <div className="loginform">
-        <img src={logo} alt="Logo KUPTM" />
-        <Text h3>KUPTM Chat</Text>
-        <Button
-          onPress={this.loginWithGmail}
-          icon={<User set="bold" />}
-        >
-          <Spacer y={1} />
-          Login with Google
-        </Button>
+      <div>
+        <div className="loginform">
+          <img src={logo} alt="Logo KUPTM" />
+          <Text h3>KUPTM Chat</Text>
+          <Progress style={this.state.loginloader === true ? {display: 'block'} : {display: 'none'}} indeterminated value={50} shadow color="primary" status="secondary" />
+          <Spacer x={1}/>
+          <Button
+            onPress={this.loginWithGmail}
+            icon={<User set="bold" />}
+          >
+            <Spacer y={1} />
+            Login with Google
+          </Button>
+        </div>
         <Modal
           closeButton
           aria-labelledby="modal-title"
