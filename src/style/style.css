@@ -170,3 +170,7 @@
     justify-content: center;
     display: flex;
 }
+
+.chatname {
+    font-size: 11px;
+}

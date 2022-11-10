@@ -58,18 +58,7 @@ class UsersList extends Component {
                                                 height={60}
                                                 alt="Card image background"
                                             />
-                                            <Card.Footer
-                                                isBlurred
-                                                css={{
-                                                    position: "absolute",
-                                                    bgBlur: "#ffffff11",
-                                                    borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-                                                    bottom: 0,
-                                                    zIndex: 1,
-                                                }}
-                                            >
-                                                <Text h5 style={{ position: 'absolute', color: 'white', padding: '10px' }}>{user.name}</Text>
-                                            </Card.Footer>
+                                            <Text h5 style={{ position: 'absolute', color: 'white', padding: '10px', zIndex: 2, }}>{user.name}</Text>
                                         </Card>
                                         : ""
                                 })}

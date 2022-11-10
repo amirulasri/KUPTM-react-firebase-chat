@@ -48,7 +48,7 @@ class Message extends Component {
                                                     <div>
                                                         <div>
                                                             <Text>{conversation.msg}</Text>
-                                                            <Text color="gray.500" fontSize={11}>
+                                                            <Text className="chatname">
                                                                 - {conversation.name} • {moment(conversation.time).fromNow()}
                                                             </Text>
                                                         </div>
@@ -64,7 +64,7 @@ class Message extends Component {
                                                             className="avatarprofile"
                                                             key={i}
                                                             src={user.img}
-                                                            style={{marginRight: '0.25em'}}
+                                                            style={{ marginRight: '0.25em' }}
                                                         />
                                                         :
                                                         ''
@@ -75,7 +75,7 @@ class Message extends Component {
                                                             <Text>
                                                                 {conversation.msg}
                                                             </Text>
-                                                            <Text color="gray.500" fontSize={11}>
+                                                            <Text className="chatname">
                                                                 - {conversation.name} • {moment(conversation.time).fromNow()}
                                                             </Text>
                                                         </div>
