@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import { Button, Spacer, NextUIProvider } from "@nextui-org/react";
-import CustomTheme from "./theme";
 import Login from "./component/login";
 import Home from "./component/Home";
 import {
@@ -36,26 +34,23 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={CustomTheme}>
-        <NextUIProvider>
-          <CSSReset />
-          <Router>
-            <Switch>
-              <Route exact path="/">
-                {this.state.authenticated === true
-                  ? <Redirect to='/chat' />
-                  : <Login isLogin={this.isLogin} />
-                }
-              </Route>
-              <PrivateRoute
-                path="/chat"
-                authenticated={this.state.authenticated}
-                component={() => <Home user={this.state.user} logout={this.isLogout} />}
-              />
-            </Switch>
-          </Router>
-        </NextUIProvider>
-      </ThemeProvider>
+      <NextUIProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              {this.state.authenticated === true
+                ? <Redirect to='/chat' />
+                : <Login isLogin={this.isLogin} />
+              }
+            </Route>
+            <PrivateRoute
+              path="/chat"
+              authenticated={this.state.authenticated}
+              component={() => <Home user={this.state.user} logout={this.isLogout} />}
+            />
+          </Switch>
+        </Router>
+      </NextUIProvider>
     );
   }
 }

@@ -52,14 +52,14 @@
 .messagecontainer {
     background-color: rgb(238, 255, 228);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .messagecontainer2 {
     background-color: rgb(254, 228, 255);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -125,8 +125,8 @@
 
 .userlistprofilepic {
     border-radius: 30px;
-    width: 50px;
-    height: 50px;
+    width: 31px;
+    height: 31px;
 }
 
 .logomain {
@@ -138,4 +138,35 @@
     background-color: white;
     border-top: 10px;
     height: 60px;
+    display: flex;
+}
+
+.headeritem {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+.containerouter {
+    height: 100vh;
+    background-color: rgb(222, 222, 222);
+}
+
+.containerinner {
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.chatinner {
+    margin-top: 40px;
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+}
+
+.chatcontent {
+    align-content: center;
+    justify-content: center;
+    display: flex;
 }

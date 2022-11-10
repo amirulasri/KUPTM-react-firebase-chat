@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Loading, Text } from '@nextui-org/react';
+import { Loading, Text, Card, Spacer } from '@nextui-org/react';
 import "../../style/style.css";
+import publicgroupbg from '../../assets/publicgroupbg.png';
 
 class UsersList extends Component {
     constructor(props) {
@@ -35,33 +36,41 @@ class UsersList extends Component {
                             </div>
                             :
                             <React.Fragment>
-                                <div className='eachuserlist' onClick={() => this.selectUser("chatRoom")}>
-                                    <div
-                                        className='userlist'
-                                        //variantColor={this.state.activeItem === "chatRoom" ? "red" : "orange"}
-                                        style={this.state.activeItem === "chatRoom" ? {backgroundColor: 'rgb(249, 255, 196)'} : {backgroundColor: 'rgb(255, 229, 196)'}}
-                                    >
-                                        <Text>Common Group</Text>
-                                        <Loading style={{ display: this.props.loadingData && this.state.activeItem === "chatRoom" ? "block" : "none" }} />
-                                    </div>
-                                </div>
+                                <Card variant='flat' isPressable isHoverable onClick={() => this.selectUser("chatRoom")}>
+                                    <Card.Image
+                                        src={publicgroupbg}
+                                        objectFit="cover"
+                                        width="100%"
+                                        height={60}
+                                        alt="Card image background"
+                                    />
+                                    <Text h5 style={{ position: 'absolute', color: 'white', padding: '15px' }}>Public Groups</Text>
+                                </Card>
+                                <Spacer y={0.5} />
                                 {this.props.usersList.map(user => {
                                     return (user.uid !== this.props.userId)
                                         ?
-                                        <div className='eachuserlist' key={user.uid} onClick={() => this.selectUser(user)}>
-                                            <div
-                                                className='userlist'
-                                                //variantColor={this.state.activeItem === user.uid ? "red" : "orange"}
-                                                style={this.state.activeItem === user.uid ? {backgroundColor: 'rgb(249, 255, 196)'} : {backgroundColor: 'rgb(255, 229, 196)'}}
+                                        <Card variant='flat' isPressable isHoverable key={user.uid} onClick={() => this.selectUser(user)}>
+                                            <Card.Image
+                                                src={user.img}
+                                                objectFit="cover"
+                                                width="100%"
+                                                height={60}
+                                                alt="Card image background"
+                                            />
+                                            <Card.Footer
+                                                isBlurred
+                                                css={{
+                                                    position: "absolute",
+                                                    bgBlur: "#ffffff11",
+                                                    borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                                                    bottom: 0,
+                                                    zIndex: 1,
+                                                }}
                                             >
-                                                <img
-                                                    className='userlistprofilepic'
-                                                    src={user.img}
-                                                />
-                                                <Text>{user.name}</Text>
-                                                <Loading style={{ display: this.props.loadingData && this.state.activeItem === user.uid ? "block" : "none" }} />
-                                            </div>
-                                        </div>
+                                                <Text h5 style={{ position: 'absolute', color: 'white', padding: '10px' }}>{user.name}</Text>
+                                            </Card.Footer>
+                                        </Card>
                                         : ""
                                 })}
                             </React.Fragment>

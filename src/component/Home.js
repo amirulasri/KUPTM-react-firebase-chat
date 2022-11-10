@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Box, Flex } from "@chakra-ui/core"
 import Message from "./min-component/message";
 import Header from "./min-component/header";
 import UsersList from "./min-component/usersList";
@@ -133,24 +132,15 @@ class Home extends Component {
     render() {
         return (
             < React.Fragment >
-                <Box h="100vh" bg="gray.100">
-                    <Flex justifyContent="center">
-                        <Flex
-                            width={[
-                                "100%",
-                                "100%",
-                                "100%",
-                                "65%"
-                            ]}
-                            flexDirection="column"
-                            p={[0, 0, 0, 6]}
-                        >
+                <div className="containerouter">
+                    <div className="containerinner">
+                        <div className="chatinner">
                             <Header
                                 fullName={this.state.user.fullName}
                                 profile_picture={this.state.user.profile_picture}
                                 logout={this.props.logout}
                             />
-                            <Flex align="center" justifyContent="center">
+                            <div className="chatcontent">
                                 <UsersList
                                     userId={this.state.userId}
                                     usersList={this.state.usersList}
@@ -166,10 +156,10 @@ class Home extends Component {
                                     loadingData={this.state.loadingData}
                                     messages={this.state.messages}
                                 />
-                            </Flex>
-                        </Flex>
-                    </Flex>
-                </Box>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </React.Fragment >
         )
     }
