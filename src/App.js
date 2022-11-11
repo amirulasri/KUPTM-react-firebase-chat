@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Spacer, NextUIProvider } from "@nextui-org/react";
+import { Button, Spacer, NextUIProvider, createTheme } from "@nextui-org/react";
 import Login from "./component/login";
 import Home from "./component/Home";
 import {
@@ -8,6 +8,10 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+
+const darkTheme = createTheme({
+  type: 'dark',
+});
 
 class App extends Component {
   constructor() {
@@ -34,8 +38,8 @@ class App extends Component {
 
   render() {
     return (
-      <NextUIProvider>
-        <Router>
+      <NextUIProvider theme={darkTheme}>
+        <Router basename='/project/kuptmchat/'>
           <Switch>
             <Route exact path="/">
               {this.state.authenticated === true

@@ -120,7 +120,7 @@ class Home extends Component {
                     msg: snap.val().text,
                     key: snap.key
                 }
-                this.setState({ messages: [...this.state.messages, newMsg] })
+                this.setState({ messages: [...this.state.messages, newMsg] });
             }
         })
     }

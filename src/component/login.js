@@ -72,7 +72,7 @@ class Login extends Component {
       <div>
         <div className="loginform">
           <img src={logo} alt="Logo KUPTM" />
-          <Text h3>KUPTM Chat</Text>
+          <Text h3 style={{textAlign: 'center'}}>KUPTM Chat</Text>
           <Progress style={this.state.loginloader === true ? {display: 'block'} : {display: 'none'}} indeterminated value={50} shadow color="primary" status="secondary" />
           <Spacer x={1}/>
           <Button
